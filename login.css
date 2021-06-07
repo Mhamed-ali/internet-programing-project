@@ -1,0 +1,222 @@
+
+body{
+
+background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0.9) 100%), url("netflix\ clone\ home\ page\ background\ image\ multiple\ shows\ collage.jpg");
+background-repeat: no-repeat;
+}
+
+
+.logo{
+    float:left;
+}
+.logo > img{
+    max-width: 100%;
+    max-height: 100%;
+
+}
+
+#container {
+    position: relative;
+    display: block;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 314px;
+    height: 575.33px;
+    left: 50vw;
+    clear:left;
+    margin-top: 50%;
+    margin-left: -233.5px;
+    border-radius: 4px;
+    padding: 60px 68px 40px 68px;
+    margin-bottom: 90px;
+}
+#log-in-form {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 340.667px;
+}
+#sign-in-text {
+    margin: 0;
+    font-size: 32px;
+    color: white;
+}
+.label-container {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-bottom: 28px;
+}
+
+
+.box-container {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 40px;
+    border-radius: 4px;
+    border-width: 0;
+    background-color: #363636;
+}
+
+.field {
+    position: relative;
+    width: 274px;
+    height: 32px;
+    border-radius: 4px;
+    outline: 0 none;
+    border-width: 0;
+    padding: 16px 20px 0 20px;
+    color: white;
+    background-color: transparent;
+}
+.inputError {
+    position: relative;
+    top: -10px;
+    padding: 0 3px 6px 3px;
+    font-size: 13px;
+    color: #E87C03;
+}
+.label{
+    color:lightgray;
+}
+
+#signInButton {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-width: 0;
+    border-radius: 4px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 0;
+    font-size: 16px;
+    margin-top: 8px;
+}
+.checkbox-row {
+    position: relative;
+    width: 100%;
+    top: 2px;
+    font-size: 14px;
+}
+.checkbox-container {
+    position: absolute;
+    background-color: white;
+    outline: 0 none;
+    opacity: 60%;
+    border-radius: 2px;
+    border-width: 0;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+#remember-me-label {
+    position: relative;
+    color: white;
+    opacity: 60%;
+    user-select: none;
+    width: max-content;
+    margin: 0 0 0 20px;
+}
+#help {
+    position: relative;
+    cursor: pointer;
+    text-align: right;
+    float: right;
+    color: white;
+    text-decoration: none;
+    opacity: 60%;
+}
+.fb-login{
+    position: relative;
+    padding: 0;
+    margin: 0;
+   height: fit-content;
+   width: fit-content;
+   
+}
+.fb-icon{
+  
+ position: relative;
+margin: 0 10px 0 0;
+padding: 0;
+width: 20px;
+ height: 20px;
+ vertical-align: middle;
+ user-select: none;
+ float: left;
+
+}
+#fb-btn-text{
+    position: relative;
+    color: gray;
+    font-size: 14px;
+    font-weight: 500;
+    user-select: none;
+    left: -4px;
+    clear: left;
+
+}
+
+.sign-up{
+    position: relative;
+    margin-top: 20px;
+    color: gray;
+    font-size: 16px;
+    font-weight: 500;
+    user-select: none;
+    padding:0;
+
+
+}
+.sign-now{
+    color: white;
+    font-size: large;
+}
+.capcha{
+color:gray;
+margin-top: 20px;
+font-size: 13px;
+}
+.footer {
+    width: 100%;
+    height: 250px;
+    overflow: auto;
+    position: relative;
+   float: left;
+  background-color: black;
+  opacity: 0.7;
+  margin-top: 50px;
+
+    bottom: 0;
+}
+
+
+.footer li {
+    line-height: 2;
+    margin: auto;
+    display: inline;
+    padding-right:250px ;
+    
+}
+
+.footer, .footer a {
+    color: lightgray;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.footer p {
+    margin-bottom: 1.5rem;
+    margin-left: 15px;
+    font-size: large;
+}
+#errorEmail, #errorPassword{
+    color: hsl(32, 97%, 46%);
+    font-size: 14px;
+}
