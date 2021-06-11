@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2021 at 11:21 PM
+-- Generation Time: Jun 11, 2021 at 11:32 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -67,23 +67,23 @@ INSERT INTO `films` (`id`, `name`, `href`, `src`, `alt`, `category`) VALUES
 (23, 'new girl', NULL, 'img\\tv5.PNG', NULL, 'tv'),
 (24, 'the legends of tomorrow', NULL, 'img\\tv6.PNG', NULL, 'tv'),
 (25, 'agents of shield', NULL, 'img\\tv7.PNG', NULL, 'tv'),
-(26, '', NULL, 'img\\tv8.PNG', NULL, 'tv'),
-(27, '', NULL, 'img\\tv9.PNG', NULL, 'tv'),
-(28, '', NULL, 'img\\tv10.PNG', NULL, 'tv'),
-(29, '', NULL, 'img\\tv11.PNG', NULL, 'tv'),
-(30, '', NULL, 'img\\tv12.PNG', NULL, 'tv'),
-(31, '', NULL, 'img\\m1.PNG', NULL, 'action'),
-(32, '', NULL, 'img\\m2.PNG', NULL, 'action'),
-(33, '', NULL, 'img\\m3.PNG', NULL, 'action'),
-(34, '', NULL, 'img\\m4.PNG', NULL, 'action'),
-(35, '', NULL, 'img\\m5.PNG', NULL, 'action'),
-(36, '', NULL, 'img\\m6.PNG', NULL, 'action'),
-(37, '', NULL, 'img\\o1.PNG', NULL, 'new&popular'),
-(38, '', NULL, 'img\\o2.PNG', NULL, 'new&popular'),
-(39, '', NULL, 'img\\o3.PNG', NULL, 'new&popular'),
-(40, '', NULL, 'img\\o4.PNG', NULL, 'new&popular'),
-(41, '', NULL, 'img\\o5.PNG', NULL, 'new&popular'),
-(42, '', NULL, 'img\\o6.PNG', NULL, 'new&popular');
+(26, 'marlon', NULL, 'img\\tv8.PNG', NULL, 'tv'),
+(27, 'cooking on high', NULL, 'img\\tv9.PNG', NULL, 'tv'),
+(28, 'queer eye', NULL, 'img\\tv10.PNG', NULL, 'tv'),
+(29, 'shooter', NULL, 'img\\tv11.PNG', NULL, 'tv'),
+(30, 'jessica jones', NULL, 'img\\tv12.PNG', NULL, 'tv'),
+(31, 'wanted', NULL, 'img\\m1.PNG', NULL, 'action'),
+(32, 'the bourne untimatum', NULL, 'img\\m2.PNG', NULL, 'action'),
+(33, 'guardians of the galaxy', NULL, 'img\\m3.PNG', NULL, 'action'),
+(34, 'national treasure', NULL, 'img\\m4.PNG', NULL, 'action'),
+(35, 'bad boys', NULL, 'img\\m5.PNG', NULL, 'action'),
+(36, 'bright', NULL, 'img\\m6.PNG', NULL, 'action'),
+(37, 'cooking on high', NULL, 'img\\o1.PNG', NULL, 'new&popular'),
+(38, 'queer eye', NULL, 'img\\o2.PNG', NULL, 'new&popular'),
+(39, 'jessica jones', NULL, 'img\\o3.PNG', NULL, 'new&popular'),
+(40, 'brain on fire', NULL, 'img\\o4.PNG', NULL, 'new&popular'),
+(41, 'the kissing booth', NULL, 'img\\o5.PNG', NULL, 'new&popular'),
+(42, 'arrested development', NULL, 'img\\o6.PNG', NULL, 'new&popular');
 
 -- --------------------------------------------------------
 
