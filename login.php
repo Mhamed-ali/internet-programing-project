@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -13,31 +15,6 @@ if ($conn->connect_error) {
 }
 
 
-// define variables and set to empty values
-// $email = $password = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['submit'])) {
-        $email = test_input($_POST["email"]);
-        $password = test_input($_POST["password"]);
-        $sql = "SELECT passwords FROM users WHERE email = '$email'";
-        $result = $conn->query($sql);
-        while ($row = $result->fetch_assoc()) {
-            // only popular category
-            if (($row["passwords"] == $password)) {
-                echo "right";
-            } else {
-                echo "error";
-            }
-        }
-    }
-}
-//   $email = test_input($_POST["email"]);
-//   $password = test_input($_POST["password"]);
-//   $sql = "SELECT passwords FROM users WHERE email == '$email'";
-//   
-// }
-
 function test_input($data)
 {
     $data = trim($data);
@@ -48,9 +25,36 @@ function test_input($data)
 if (isset($_POST['submit'])) {
     $email = test_input($_POST["email"]);
     $password = test_input($_POST["password"]);
-    $sql = "SELECT email, passwords FROM users";
-    $result = $conn->query($sql);
+    //$email_result =$conn -> query("SELECT email FROM users WHERE email = '".$email."'");
+    //$password_result =$conn -> query("SELECT passwords FROM users WHERE passwords = '".$password."'");
+    //$result = $conn -> query("SELECT email, passwords FROM users WHERE email = '".$email."' AND  passwords = '".$password."'");
+    $result = $conn->query("SELECT * FROM users WHERE email = '" . $email . "' AND  passwords = '" . $password . "'");
+    $row  = mysqli_fetch_array($result);
+    if (is_array($row)) {
+        $_SESSION["id"] = $row['id'];
+        $_SESSION["name"] = $row['names'];
+    } else {
+        $message = "Invalid Username or Password!";
+    }
+
+    if (isset($_SESSION["id"])) {
+        header("Location:home.php");
+    }
+    // if(mysqli_num_rows($result) > 0 ){
+
+    //     echo '<script>alert("You logged in successfully")</script>';
+    //     echo "<script> window.location = 'home.php'</script>";
+    // }else{
+    //     echo '<script>alert("error")</script>';
+    // }
+    // if($email == $email_result && $password == $password_result){
+    //     echo '<script>alert("You logged in successfully")</script>';
+    // }
+    // else{
+    //     echo '<script>alert("error")</script>';
+    // }
 }
+
 
 
 
@@ -96,7 +100,7 @@ if (isset($_POST['submit'])) {
             <!--<div class="inputError" id="pwd-inputError"></div>-->
             <div class="box-container" id="login-button-container">
 
-                <button type="submit" id="signInButton" disabled="disabled">
+                <button type="submit" id="signInButton" disabled="disabled" name="submit">
                     Sign In
                 </button>
             </div>

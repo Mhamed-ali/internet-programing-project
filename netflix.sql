@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2021 at 11:32 PM
+-- Generation Time: Jun 12, 2021 at 12:17 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -95,6 +95,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(255) NOT NULL,
   `email` varchar(50) NOT NULL,
+  `names` varchar(20) NOT NULL,
   `passwords` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32;
 
@@ -102,12 +103,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `passwords`) VALUES
-(1, 'mohamedklay918@gmail.com', 'mm11kk99'),
-(6, 'mohamedklay9118@gmail.com', 'aa11112'),
-(7, 'mohamedklay91qq8@gmail.com', 'aa44bb22'),
-(8, 'mohamedشklay9ش18@gmail.com', 'سشي'),
-(9, 'mohamedشklay9ش1ش8@gmail.com', 'شسيشسي');
+INSERT INTO `users` (`id`, `email`, `names`, `passwords`) VALUES
+(1, 'mohamedklay918@gmail.com', 'mohamed ali', 'mm11kk99');
 
 --
 -- Indexes for dumped tables
