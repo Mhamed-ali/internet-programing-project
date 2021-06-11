@@ -15,7 +15,7 @@
 </a>
 </div>
 <div id="container">
-    <form id="log-in-form"name="loginForm" method="post" action="login.html">
+    <form id="log-in-form"name="loginForm" method="post" action="home.html">
         <div class="label-container">
             <h2 id="sign-in-text"> Sign in</h2>
         </div>
@@ -57,7 +57,7 @@
             <label class="fb-btn-text" id="fb-btn-text">Login with facebook</label>
             <div class="sign-up">
              <span class="new-netflix"> New to Netflix?</span>
-             <a href= "https://www.netflix.com/eg-en/">
+             <a href= "#">
                 <span class = "sign-now">
                     Sign up now
                 </span>
@@ -68,7 +68,7 @@
             <div class= "capcha">
                 <span id = "capcha">
                     This page is protected by Google reCAPTCHA to ensure you're not a bot.
-                    <a class = "learn-more" href= "https://www.netflix.com/eg-en/">
+                    <a class = "learn-more" href= "#">
                     Learn more.</a>
                 </span>
             </div>
@@ -118,7 +118,7 @@
                 if (result) {
                     document.getElementById('errorPassword').style.display = "none";
                     document.getElementById('signInButton').disabled = false;
-                   // document.getElementById("email-form").submit();
+                    document.getElementById("email-form").submit();
                 }
                 else {
                     document.getElementById('errorPassword').style.display = "block";

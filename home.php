@@ -1,3 +1,25 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "netflix";
+
+
+// Create connection
+$conn = new mysqli($servername, $username, $password ,$dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT id, href, src, alt, category FROM films";
+$result = $conn->query($sql);
+// $copy = new ArrayObject($result_popular) ; 
+// $result_trending =$copy->getArrayCopy();
+
+
+
+?>
 <html>
 <head>
   <link rel="stylesheet" href="home.css">
@@ -37,10 +59,22 @@
     
     <!-- MAIN CONTAINER -->
     <section class="main-container" >
-      <div class="location" id="home">          <!-- usless -->
+      <div class="location" id="home">          <!-- useless -->
           <h1 id="home">Popular on Netflix</h1>
           <div class="box">
-            <a href=""><img src="img\p1.PNG" alt=""></a>
+            <?php 
+            if ($result->num_rows > 0) {
+              // output data of each row
+              while($row = $result->fetch_assoc() )  {
+                // only popular category
+                if ( ($row["category"] == "popular")){
+                echo ("<a href=\"" . $row["href"]. " \" > <img src=\" ". $row["src"]." \" alt=\" ". $row["alt"]. "\"></a>");
+                }
+
+              }
+            }    
+            ?>
+            <!-- <a href=""><img src="img\p1.PNG" alt=""></a>
             <a href=""><img src="img\p2.PNG" alt=""></a>
             <a href=""><img src="img\p3.PNG" alt=""></a>
             <a href=""><img src="img\p4.PNG" alt=""></a>
@@ -52,8 +86,7 @@
             <a href=""><img src="img\p9.PNG" alt=""></a>
             <a href=""><img src="img\p10.PNG" alt=""></a>
             <a href=""><img src="img\p11.PNG" alt=""></a>
-            <a href=""><img src="img\p12.PNG" alt=""></a>        
-            <a href=""><img src="img\p12.PNG" alt=""></a>        
+            <a href=""><img src="img\p12.PNG" alt=""></a>         -->
 
           </div>
       </div>
@@ -61,17 +94,45 @@
 
       <h1 id="myList">Trending Now</h1>
       <div class="box">
-        <a href=""><img src="img\t1.PNG" alt=""></a>
+      <?php 
+            $result->data_seek(0);
+
+            if ($result->num_rows > 0) {
+              // output data of each row
+              while($row = $result->fetch_assoc() )  {
+                // only popular category
+                if ( ($row["category"] == "trending")){
+                echo ("<a href=\"" . $row["href"]. " \" > <img src=\" ". $row["src"]." \" alt=\" ". $row["alt"]. "\"></a>");
+                }
+
+              }
+            }    
+      ?>
+        <!-- <a href=""><img src="img\t1.PNG" alt=""></a>
         <a href=""><img src="img\t2.PNG" alt=""></a>
         <a href=""><img src="img\t3.PNG" alt=""></a>
         <a href=""><img src="img\t4.PNG" alt=""></a>
         <a href=""><img src="img\t5.PNG" alt=""></a>
-        <a href=""><img src="img\t6.PNG" alt=""></a>                  
+        <a href=""><img src="img\t6.PNG" alt=""></a>                   -->
       </div>
       
       <h1 id="tvShows">TV Shows</h1>
       <div class="box">
-        <a href=""><img src="img\tv1.PNG" alt=""></a>
+      <?php 
+            $result->data_seek(0);
+
+            if ($result->num_rows > 0) {
+              // output data of each row
+              while($row = $result->fetch_assoc() )  {
+                // only popular category
+                if ( ($row["category"] == "tv")){
+                echo ("<a href=\"" . $row["href"]. " \" > <img src=\" ". $row["src"]." \" alt=\" ". $row["alt"]. "\"></a>");
+                }
+
+              }
+            }    
+      ?>
+        <!-- <a href=""><img src="img\tv1.PNG" alt=""></a>
         <a href=""><img src="img\tv2.PNG" alt=""></a>
         <a href=""><img src="img\tv3.PNG" alt=""></a>
         <a href=""><img src="img\tv4.PNG" alt=""></a>
@@ -83,28 +144,56 @@
         <a href=""><img src="img\tv9.PNG" alt=""></a>
         <a href=""><img src="img\tv10.PNG" alt=""></a>
         <a href=""><img src="img\tv11.PNG" alt=""></a>
-        <a href=""><img src="img\tv12.PNG" alt=""></a>              
+        <a href=""><img src="img\tv12.PNG" alt=""></a>               -->
       </div>
       
 
       <h1 id="movies">Blockbuster Action & Adventure</h1>
       <div class="box">
-        <a href=""><img src="img\m1.PNG" alt=""></a>
+      <?php 
+            $result->data_seek(0);
+
+            if ($result->num_rows > 0) {
+              // output data of each row
+              while($row = $result->fetch_assoc() )  {
+                // only popular category
+                if ( ($row["category"] == "action")){
+                echo ("<a href=\"" . $row["href"]. " \" > <img src=\" ". $row["src"]." \" alt=\" ". $row["alt"]. "\"></a>");
+                }
+
+              }
+            }    
+      ?>
+        <!-- <a href=""><img src="img\m1.PNG" alt=""></a>
         <a href=""><img src="img\m2.PNG" alt=""></a>
         <a href=""><img src="img\m3.PNG" alt=""></a>
         <a href=""><img src="img\m4.PNG" alt=""></a>
         <a href=""><img src="img\m5.PNG" alt=""></a>
-        <a href=""><img src="img\m6.PNG" alt=""></a>                
+        <a href=""><img src="img\m6.PNG" alt=""></a>                 -->
       </div>
 
       <h1 id="newpopular"> New & Popular</h1>
       <div class="box">
-        <a href=""><img src="img\o1.PNG" alt=""></a>
+      <?php 
+            $result->data_seek(0);
+
+            if ($result->num_rows > 0) {
+              // output data of each row
+              while($row = $result->fetch_assoc() )  {
+                // only popular category
+                if ( ($row["category"] == "new&popular")){
+                echo ("<a href=\"" . $row["href"]. " \" > <img src=\" ". $row["src"]." \" alt=\" ". $row["alt"]. "\"></a>");
+                }
+
+              }
+            }    
+      ?>
+        <!-- <a href=""><img src="img\o1.PNG" alt=""></a>
         <a href=""><img src="img\o2.PNG" alt=""></a>
         <a href=""><img src="img\o3.PNG" alt=""></a>
         <a href=""><img src="img\o4.PNG" alt=""></a>
         <a href=""><img src="img\o5.PNG" alt=""></a>
-        <a href=""><img src="img\o6.PNG" alt=""></a>                
+        <a href=""><img src="img\o6.PNG" alt=""></a>                 -->
       </div>
      
     <!-- END OF MAIN CONTAINER -->
@@ -144,3 +233,7 @@
   </div>
 </body>
 </html>
+
+<?php
+$conn->close();
+?>
