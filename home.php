@@ -1,4 +1,5 @@
 <?php
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -14,12 +15,20 @@ if ($conn->connect_error) {
 
 $sql = "SELECT id, href, src, alt, category FROM films";
 $result = $conn->query($sql);
+// $result = $conn -> query("SELECT email, passwords FROM users WHERE email = '".$email."' AND  passwords = '".$password."'");
+
+// $sql1 = "SELECT names FROM films";
+
 // $copy = new ArrayObject($result_popular) ; 
 // $result_trending =$copy->getArrayCopy();
 
 
 
 ?>
+
+
+<!DOCTYPE html>
+
 <html>
 <head>
   <link rel="stylesheet" href="home.css">
@@ -34,6 +43,7 @@ $result = $conn->query($sql);
     
 </head>
 <body>
+
   <div class="wrapper">
 
     <!-- HEADER -->
@@ -52,7 +62,13 @@ $result = $conn->query($sql);
       <nav class="sub-nav">
         <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
         <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
-        <a href="#">Account</a>        
+        <?php
+          if($_SESSION["name"]) {
+        ?>
+        <a href="#"><?php echo $_SESSION["name"]; ?></a>     
+        <?php
+        }else echo "Please login first ";
+        ?>   
       </nav>      
     </header>
     <!-- END OF HEADER -->
