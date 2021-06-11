@@ -30,7 +30,6 @@ $result = $conn->query($sql);
 <!DOCTYPE html>
 
 <html>
-
 <head>
   <link rel="stylesheet" href="home.css">
   <meta charset="utf-8" />
@@ -43,7 +42,6 @@ $result = $conn->query($sql);
   <script src="main.js"></script>
 
 </head>
-
 <body>
 
   <div class="wrapper">
@@ -71,7 +69,7 @@ $result = $conn->query($sql);
         <?php
         } else echo "Please login first ";
         ?>
-      </nav>
+      </nav>      
     </header>
     <!-- END OF HEADER -->
 
