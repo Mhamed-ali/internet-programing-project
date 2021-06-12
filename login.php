@@ -1,61 +1,37 @@
 <?php
-session_start();
+//session_start();
+require_once 'connect.php';
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "netflix";
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
-// Create connection
-$conn = new mysqli($servername, $username, $password ,$dbname);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
+        if (isset($_POST['submit'])) {
 
+           $email 	= test_input($_POST['email']);
+           $password = test_input($_POST["password"]);
 
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
-if (isset($_POST['submit'])) {
-    $email = test_input($_POST["email"]);
-    $password = test_input($_POST["password"]);
-    //$email_result =$conn -> query("SELECT email FROM users WHERE email = '".$email."'");
-    //$password_result =$conn -> query("SELECT passwords FROM users WHERE passwords = '".$password."'");
-    //$result = $conn -> query("SELECT email, passwords FROM users WHERE email = '".$email."' AND  passwords = '".$password."'");
-    $result = $conn -> query("SELECT * FROM users WHERE email = '".$email."' AND  passwords = '".$password."'");
-    $row  = mysqli_fetch_array($result);
-    if(is_array($row)) {
-        $_SESSION["id"] = $row['id'];
-        $_SESSION["name"] = $row['names'];
-    } else {
-         $message = "Invalid Username or Password!";
-    }
-
-    if(isset($_SESSION["id"])) {
-        header("Location:home.php");
-        }
-    // if(mysqli_num_rows($result) > 0 ){
-
-    //     echo '<script>alert("You logged in successfully")</script>';
-    //     echo "<script> window.location = 'home.php'</script>";
-    // }else{
-    //     echo '<script>alert("error")</script>';
-    // }
-    // if($email == $email_result && $password == $password_result){
-    //     echo '<script>alert("You logged in successfully")</script>';
-    // }
-    // else{
-    //     echo '<script>alert("error")</script>';
-    // }
-    }
+        $query =  "SELECT * FROM `users`  WHERE email ='$email'
+        AND passwords = '$password'";
+        $result = mysqli_query($conn,$query) or die(mysql_error());
+         $rows = mysqli_num_rows($result);
 
 
 
+       if ($rows==1) {
+      // $_SESSION["id"] = $row['id'];
+       //$_SESSION["name"] = $row['name'];
+      
+          header("location:home.php"); 
+          exit();
+                      }
+      else{
+          header("location: login.php?error=1&message=Incorrect email or password.");   
+          exit();                  
+          }
+                  
+        }                 
+                      
+  }
 
 ?>
 
@@ -76,10 +52,24 @@ if (isset($_POST['submit'])) {
 </a>
 </div>
 <div id="container">
-    <form id="log-in-form"name="loginForm" method="post" action="">
+    <form id="log-in-form"name="loginForm" method="post" action="login.php">
         <div class="label-container">
             <h2 id="sign-in-text"> Sign in</h2>
         </div>
+
+        <?php
+require_once 'connect.php';
+
+        
+ if(isset($_REQUEST['error'])) {
+
+if(isset($_REQUEST['message'])) {
+ echo'<div class="ErrorEmail" style="color:white; background-color:hsl(32, 97%, 46%);">'.htmlspecialchars($_REQUEST['message']).'</div>';
+}
+
+      } 
+      
+      ?>
 
         <div class="box-container" id="email-container">
             <!--<label class="label" id="email-label" for="email-field">Email or phone number</label><br>-->
@@ -197,7 +187,5 @@ if (isset($_POST['submit'])) {
 <?PHP
 $conn->close();
 ?>
-
-
 
 
