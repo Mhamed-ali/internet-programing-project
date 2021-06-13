@@ -63,7 +63,7 @@ $result = $conn->query($sql);
         <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
         <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
         <?php
-        if ($_SESSION["name"]) {
+          if(isset($_SESSION["name"])) {
         ?>
           <a href="#"><?php echo $_SESSION["name"]; ?></a>
         <?php
