@@ -17,6 +17,7 @@ $result = $conn->query($sql);
 <!DOCTYPE html>
 
 <html>
+
 <head>
   <link rel="stylesheet" href="home.css">
   <meta charset="utf-8" />
@@ -29,6 +30,7 @@ $result = $conn->query($sql);
   <script src="main.js"></script>
 
 </head>
+
 <body>
 
   <div class="wrapper">
@@ -47,7 +49,7 @@ $result = $conn->query($sql);
 
       </nav>
       <nav class="sub-nav">
-        <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
+        <a href="search.php"><i class="fas fa-search sub-nav-logo"></i></a>
         <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
         <?php
         if ($_SESSION["name"]) {
@@ -56,7 +58,7 @@ $result = $conn->query($sql);
         <?php
         } else echo "Please login first ";
         ?>
-      </nav>      
+      </nav>
     </header>
     <!-- END OF HEADER -->
 
