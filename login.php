@@ -1,20 +1,10 @@
 <?php
-session_start();
+require_once 'connect.php';
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "netflix";
-
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (isset($_SESSION["name"])){
+    echo '<script>alert("you already logged in ")</script>';
+    header("Location:home.php");
 }
-
-
 function test_input($data)
 {
     $data = trim($data);
@@ -41,12 +31,10 @@ if (isset($_POST['submit'])) {
                 header("Location:home.php");
             } else {
                 $message = "Invalid Password!";
-                echo $message;
             }
         }
     } else {
         $message = "Invalid username!";
-        echo $message;
     }
 
 
@@ -98,7 +86,7 @@ if (isset($_POST['submit'])) {
 
 
     <div class="logo">
-        <a href="https://www.netflix.com/">
+        <a href="#">
             <img src="logo.PNG" alt="netflix-logo">
         </a>
     </div>

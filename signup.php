@@ -1,26 +1,5 @@
 <?php
-session_start();
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "netflix";
-
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// define variables and set to empty values
-// $email = $password = "";
-
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//   $email = test_input($_POST["email"]);
-//   $password = test_input($_POST["password"]);
-// }
+require_once 'connect.php';
 
 function test_input($data)
 {
@@ -31,6 +10,7 @@ function test_input($data)
 }
 if (isset($_POST['submit'])) {
     $email = test_input($_POST["email"]);
+    
     $name = test_input($_POST["name"]);
     $password = test_input($_POST["password"]);
     $hash_pass = password_hash($password, PASSWORD_DEFAULT);
@@ -65,7 +45,7 @@ if (isset($_POST['submit'])) {
 
 
     <div class="logo">
-        <a href="https://www.netflix.com/">
+        <a href="#">
             <img src="logo.PNG" alt="netflix-logo">
         </a>
     </div>

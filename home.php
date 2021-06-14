@@ -1,6 +1,11 @@
 <?php
 require_once 'connect.php';
-$sql = "SELECT id, href, src, alt, category FROM films";
+// if not set redirect ro login 
+if (! isset($_SESSION["name"])){
+  header("Location:login.php");
+}
+
+$sql = "SELECT * FROM films";
 $result = $conn->query($sql);
 // $result = $conn -> query("SELECT email, passwords FROM users WHERE email = '".$email."' AND  passwords = '".$password."'");
 
@@ -17,7 +22,6 @@ $result = $conn->query($sql);
 <!DOCTYPE html>
 
 <html>
-
 <head>
   <link rel="stylesheet" href="home.css">
   <meta charset="utf-8" />
@@ -30,7 +34,6 @@ $result = $conn->query($sql);
   <script src="main.js"></script>
 
 </head>
-
 <body>
 
   <div class="wrapper">
@@ -41,7 +44,7 @@ $result = $conn->query($sql);
         <a id="logo" href="#home"><img src="img\logo.png" alt="Logo Image"></a>
       </div>
       <nav class="main-nav">
-        <a href="#home">Home</a>
+        <a href="#">Home</a>
         <a href="#tvShows">TV Shows</a>
         <a href="#movies">Movies</a>
         <a href="#newpopular">New & Popular</a>
@@ -49,16 +52,19 @@ $result = $conn->query($sql);
 
       </nav>
       <nav class="sub-nav">
-        <a href="search.php"><i class="fas fa-search sub-nav-logo"></i></a>
+      <a href="search.php"><i class="fas fa-search sub-nav-logo"></i></a>
         <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
+        
         <?php
-        if ($_SESSION["name"]) {
+          if(isset($_SESSION["name"])) {
         ?>
           <a href="#"><?php echo $_SESSION["name"]; ?></a>
         <?php
-        } else echo "Please login first ";
+        } else echo " <a href=\"login.php\"></a> Please login first ";
         ?>
-      </nav>
+        <a href="logout.php"><i class="fas fa-sign-out-alt sub-nav-logo"></i></a>
+
+      </nav>      
     </header>
     <!-- END OF HEADER -->
 
@@ -74,24 +80,13 @@ $result = $conn->query($sql);
             while ($row = $result->fetch_assoc()) {
               // only popular category
               if (($row["category"] == "popular")) {
-                echo ("<a href=\"" . $row["href"] . " \" > <img src=\" " . $row["src"] . " \" alt=\" " . $row["alt"] . "\"></a>");
+                echo ("<a href=\"" . $row["href"] ."?filmname=".$row["name"]."&filmsrc=films/" . $row["video_path"] ." \" > <img src=\" " . $row["src"] . " \" alt=\" " . $row["alt"] . "\"></a>");
+
               }
             }
           }
           ?>
-          <!-- <a href=""><img src="img\p1.PNG" alt=""></a>
-            <a href=""><img src="img\p2.PNG" alt=""></a>
-            <a href=""><img src="img\p3.PNG" alt=""></a>
-            <a href=""><img src="img\p4.PNG" alt=""></a>
-            <a href=""><img src="img\p5.PNG" alt=""></a>
-            <a href=""><img src="img\p6.PNG" alt=""></a>
-    
-            <a href=""><img src="img\p7.PNG" alt=""></a>
-            <a href=""><img src="img\p8.PNG" alt=""></a>
-            <a href=""><img src="img\p9.PNG" alt=""></a>
-            <a href=""><img src="img\p10.PNG" alt=""></a>
-            <a href=""><img src="img\p11.PNG" alt=""></a>
-            <a href=""><img src="img\p12.PNG" alt=""></a>         -->
+
 
         </div>
       </div>
@@ -107,17 +102,12 @@ $result = $conn->query($sql);
           while ($row = $result->fetch_assoc()) {
             // only popular category
             if (($row["category"] == "trending")) {
-              echo ("<a href=\"" . $row["href"] . " \" > <img src=\" " . $row["src"] . " \" alt=\" " . $row["alt"] . "\"></a>");
+              echo ("<a href=\"" . $row["href"] ."?filmname=".$row["name"]."&filmsrc=films/" . $row["video_path"] ." \" > <img src=\" " . $row["src"] . " \" alt=\" " . $row["alt"] . "\"></a>");
             }
           }
         }
         ?>
-        <!-- <a href=""><img src="img\t1.PNG" alt=""></a>
-        <a href=""><img src="img\t2.PNG" alt=""></a>
-        <a href=""><img src="img\t3.PNG" alt=""></a>
-        <a href=""><img src="img\t4.PNG" alt=""></a>
-        <a href=""><img src="img\t5.PNG" alt=""></a>
-        <a href=""><img src="img\t6.PNG" alt=""></a>                   -->
+
       </div>
 
       <h1 id="tvShows">TV Shows</h1>
@@ -130,24 +120,12 @@ $result = $conn->query($sql);
           while ($row = $result->fetch_assoc()) {
             // only popular category
             if (($row["category"] == "tv")) {
-              echo ("<a href=\"" . $row["href"] . " \" > <img src=\" " . $row["src"] . " \" alt=\" " . $row["alt"] . "\"></a>");
+              echo ("<a href=\"" . $row["href"] ."?filmname=".$row["name"]."&filmsrc=films/" . $row["video_path"] ." \" > <img src=\" " . $row["src"] . " \" alt=\" " . $row["alt"] . "\"></a>");
             }
           }
         }
         ?>
-        <!-- <a href=""><img src="img\tv1.PNG" alt=""></a>
-        <a href=""><img src="img\tv2.PNG" alt=""></a>
-        <a href=""><img src="img\tv3.PNG" alt=""></a>
-        <a href=""><img src="img\tv4.PNG" alt=""></a>
-        <a href=""><img src="img\tv5.PNG" alt=""></a>
-        <a href=""><img src="img\tv6.PNG" alt=""></a>
 
-        <a href=""><img src="img\tv7.PNG" alt=""></a>
-        <a href=""><img src="img\tv8.PNG" alt=""></a>
-        <a href=""><img src="img\tv9.PNG" alt=""></a>
-        <a href=""><img src="img\tv10.PNG" alt=""></a>
-        <a href=""><img src="img\tv11.PNG" alt=""></a>
-        <a href=""><img src="img\tv12.PNG" alt=""></a>               -->
       </div>
 
 
@@ -161,17 +139,12 @@ $result = $conn->query($sql);
           while ($row = $result->fetch_assoc()) {
             // only popular category
             if (($row["category"] == "action")) {
-              echo ("<a href=\"" . $row["href"] . " \" > <img src=\" " . $row["src"] . " \" alt=\" " . $row["alt"] . "\"></a>");
+              echo ("<a href=\"" . $row["href"] ."?filmname=".$row["name"]."&filmsrc=films/" . $row["video_path"] ." \" > <img src=\" " . $row["src"] . " \" alt=\" " . $row["alt"] . "\"></a>");
             }
           }
         }
         ?>
-        <!-- <a href=""><img src="img\m1.PNG" alt=""></a>
-        <a href=""><img src="img\m2.PNG" alt=""></a>
-        <a href=""><img src="img\m3.PNG" alt=""></a>
-        <a href=""><img src="img\m4.PNG" alt=""></a>
-        <a href=""><img src="img\m5.PNG" alt=""></a>
-        <a href=""><img src="img\m6.PNG" alt=""></a>                 -->
+
       </div>
 
       <h1 id="newpopular"> New & Popular</h1>
@@ -184,17 +157,13 @@ $result = $conn->query($sql);
           while ($row = $result->fetch_assoc()) {
             // only popular category
             if (($row["category"] == "new&popular")) {
-              echo ("<a href=\"" . $row["href"] . " \" > <img src=\" " . $row["src"] . " \" alt=\" " . $row["alt"] . "\"></a>");
+              echo ("<a href=\"" . $row["href"] ."?filmname=".$row["name"]."&filmsrc=films/" . $row["video_path"] ." \" > <img src=\" " . $row["src"] . " \" alt=\" " . $row["alt"] . "\"></a>");
+
             }
           }
         }
         ?>
-        <!-- <a href=""><img src="img\o1.PNG" alt=""></a>
-        <a href=""><img src="img\o2.PNG" alt=""></a>
-        <a href=""><img src="img\o3.PNG" alt=""></a>
-        <a href=""><img src="img\o4.PNG" alt=""></a>
-        <a href=""><img src="img\o5.PNG" alt=""></a>
-        <a href=""><img src="img\o6.PNG" alt=""></a>                 -->
+
       </div>
 
       <!-- END OF MAIN CONTAINER -->
