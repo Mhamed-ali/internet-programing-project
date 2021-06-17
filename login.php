@@ -2,7 +2,6 @@
 require_once 'connect.php';
 
 if (isset($_SESSION["name"])){
-    echo '<script>alert("you already logged in ")</script>';
     header("Location:home.php");
 }
 function test_input($data)
@@ -12,13 +11,12 @@ function test_input($data)
     $data = htmlspecialchars($data);
     return $data;
 }
+$error_message = "";
 if (isset($_POST['submit'])) {
     $email = test_input($_POST["email"]);
     $password = test_input($_POST["password"]);
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-    //$email_result =$conn -> query("SELECT email FROM users WHERE email = '".$email."'");
-    //$password_result =$conn -> query("SELECT passwords FROM users WHERE passwords = '".$password."'");
-    //$result = $conn -> query("SELECT email, passwords FROM users WHERE email = '".$email."' AND  passwords = '".$password."'");
+
 
     $result = $conn->query("SELECT * FROM users WHERE email = '" . $email . "'");
     if ($result->num_rows > 0) {
@@ -30,41 +28,14 @@ if (isset($_POST['submit'])) {
                 $_SESSION["name"] = $row['names'];
                 header("Location:home.php");
             } else {
-                $message = "Invalid Password!";
+                $error_message = "Invalid Password!";
             }
         }
     } else {
-        $message = "Invalid username!";
+        $error_message = "Invalid Email!";
     }
 
 
-
-
-    // $result = $conn->query("SELECT * FROM users WHERE email = '" . $email . "' AND  passwords = '" . $hashed_password . "'");
-    // $row  = mysqli_fetch_array($result);
-    // if (is_array($row)) {
-    //     $_SESSION["id"] = $row['id'];
-    //     $_SESSION["name"] = $row['names'];
-    // } else {
-    //     $message = "Invalid Username or Password!";
-    // }
-
-    // if (isset($_SESSION["id"])) {
-    //     header("Location:home.php");
-    // }
-    // if(mysqli_num_rows($result) > 0 ){
-
-    //     echo '<script>alert("You logged in successfully")</script>';
-    //     echo "<script> window.location = 'home.php'</script>";
-    // }else{
-    //     echo '<script>alert("error")</script>';
-    // }
-    // if($email == $email_result && $password == $password_result){
-    //     echo '<script>alert("You logged in successfully")</script>';
-    // }
-    // else{
-    //     echo '<script>alert("error")</script>';
-    // }
 }
 
 
@@ -80,7 +51,15 @@ if (isset($_POST['submit'])) {
     <title>Netflix login Watch TV Shows Online, Watch Movies Online</title>
     <link rel="stylesheet" href="login.css">
 </head>
+<style>
+<?php
 
+    echo(".error_message{color:red;margin-top: -20px;}");
+
+
+?>
+
+</style>
 <body>
 
 
@@ -96,13 +75,23 @@ if (isset($_POST['submit'])) {
                 <h2 id="sign-in-text"> Sign in</h2>
             </div>
 
+            <?php
+             if($error_message == "Invalid Email!"){
+                     echo("<p  class=\"error_message \">" . $error_message."</p>");
+                }
+            ?>
+
             <div class="box-container" id="email-container">
                 <!--<label class="label" id="email-label" for="email-field">Email or phone number</label><br>-->
                 <input class="field" id="email-field" name="email" type="text" placeholder="Email or phone number" onchange="validateEmail()" required>
                 <p id="errorEmail">Please enter a valid email address or phone number.</p>
             </div>
             <!--<div class="inputError" id="email-inputError"></div>-->
-
+            <?php
+             if($error_message == "Invalid Password!"){
+                     echo("<p  class=\"error_message \">" . $error_message."</p>");
+                }
+            ?>
             <div class="box-container" id="pwd-container">
                 <!--  <label class="label" id="pwd-label" for="pwd-field">password</label><br>-->
                 <input class="field" id="pwd-field" name="password" type="password" placeholder="Password" onchange="validatePassword()" required>
@@ -122,7 +111,7 @@ if (isset($_POST['submit'])) {
 
                 <label for="remember-me" id="remember-me-label"> Remember me ? </label>
 
-                <a href="https://www.netflix.com/br/LoginHelp">
+                <a href="#">
                     <label id="help">Need help?</label>
                 </a>
             </div>
@@ -133,7 +122,7 @@ if (isset($_POST['submit'])) {
         <label class="fb-btn-text" id="fb-btn-text">Login with facebook</label>
         <div class="sign-up">
             <span class="new-netflix"> New to Netflix?</span>
-            <a href="#">
+            <a href="signup.php">
                 <span class="sign-now">
                     Sign up now
                 </span>

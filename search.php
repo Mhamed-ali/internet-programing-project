@@ -21,7 +21,7 @@ require_once 'connect.php';
   <link rel="stylesheet" href="home.css">
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Netflix clone</title>
+  <title>Search</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
@@ -132,39 +132,27 @@ require_once 'connect.php';
         <div class="box">
           <?php
 		  
-if(isset($_POST['search'])){
-	$myvar=$_POST['mymovie'];
-	$sql = "select * from films where name like '%$myvar%'";
-    $result = $conn->query($sql);
-	//echo "hello".$myvar;
-  if ($result !== false && $result->num_rows > 0){
-          if ($result->num_rows > 0) {
-            // output data of each row
-            while ($row = $result->fetch_assoc()) {
-              // only popular category
-              
-                echo ("<a href=\"" . $row["href"] . " \" > <img src=\" " . $row["src"] . " \" alt=\" " . $row["alt"] . "\"></a>");
-              
-            }
-          }else {
-			  echo "<h4>No Result found</h4>";
-		  }
-		  }
-    }
+            if(isset($_POST['search'])){
+              $myvar=$_POST['mymovie'];
+              $sql = "select * from films where name like '%$myvar%'";
+                $result = $conn->query($sql);
+              //echo "hello".$myvar;
+              if ($result !== false && $result->num_rows > 0){
+                      if ($result->num_rows > 0) {
+                        // output data of each row
+                        while ($row = $result->fetch_assoc()) {
+                          // only popular category
+                          
+                          echo ("<a href=\"" . $row["href"] ."?filmname=".$row["name"]."&filmsrc=films/" . $row["video_path"] ." \" > <img src=\" " . $row["src"] . " \" alt=\" " . $row["alt"] . "\"></a>");
+                          
+                        }
+                      }else {
+                    echo "<h4>No Result found</h4>";
+                  }
+                  }
+                }
           ?>
-          <!-- <a href=""><img src="img\p1.PNG" alt=""></a>
-            <a href=""><img src="img\p2.PNG" alt=""></a>
-            <a href=""><img src="img\p3.PNG" alt=""></a>
-            <a href=""><img src="img\p4.PNG" alt=""></a>
-            <a href=""><img src="img\p5.PNG" alt=""></a>
-            <a href=""><img src="img\p6.PNG" alt=""></a>
-    
-            <a href=""><img src="img\p7.PNG" alt=""></a>
-            <a href=""><img src="img\p8.PNG" alt=""></a>
-            <a href=""><img src="img\p9.PNG" alt=""></a>
-            <a href=""><img src="img\p10.PNG" alt=""></a>
-            <a href=""><img src="img\p11.PNG" alt=""></a>
-            <a href=""><img src="img\p12.PNG" alt=""></a>         -->
+
 
         </div>
       </div>
@@ -214,6 +202,3 @@ if(isset($_POST['search'])){
 
 </html>
 
-<?php
-$conn->close();
-?>
