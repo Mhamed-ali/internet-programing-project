@@ -1,6 +1,7 @@
 <?php
 require_once 'connect.php';
 
+
 function test_input($data)
 {
     $data = trim($data);
@@ -8,6 +9,7 @@ function test_input($data)
     $data = htmlspecialchars($data);
     return $data;
 }
+$error_message = "";
 if (isset($_POST['submit'])) {
     $email = test_input($_POST["email"]);
     
@@ -17,11 +19,11 @@ if (isset($_POST['submit'])) {
     $sql = "INSERT INTO users (id,email,names, passwords) VALUES ('','$email','$name', '$hash_pass')";
     if ($conn->query($sql) === TRUE) {
         $_SESSION["name"] = $name;
-        echo '<script>alert("New record created successfully")</script>';
+    //    echo '<script>alert("New record created successfully")</script>';
         echo "<script> window.location = 'home.php'</script>";
     } else {
-        echo '<script>alert("New record created fals")</script>';
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        $error_message = "Email is already taken";
+    
     }
 }
 
@@ -39,6 +41,16 @@ if (isset($_POST['submit'])) {
     <title>Netflix login Watch TV Shows Online, Watch Movies Online</title>
     <link rel="stylesheet" href="login.css">
 </head>
+<style>
+<?php
+if($error_message != ""){
+    echo(".error_message{color:red;margin-top: -20px;");
+
+}
+
+?>
+
+</style>
 
 <body>
 
@@ -60,13 +72,16 @@ if (isset($_POST['submit'])) {
                 <!-- <p id="errorNail">Please enter a valid name or phone number.</p> -->
             </div>
             <!--<div class="inputError" id="name-inputError"></div>-->
-
+            <?php
+                 echo("<p  class=\"error_message \">" . $error_message."</p>");
+                ?>
             <div class="box-container" id="email-container">
                 <!--<label class="label" id="email-label" for="email-field">Email or phone number</label><br>-->
+             
                 <input class="field" id="email-field" name="email" type="text" placeholder="Email or phone number" onchange="validateEmail()" required>
+             
                 <!-- <p id="errorEmail">Please enter a valid email address or phone number.</p> -->
             </div>
-            <!--<div class="inputError" id="email-inputError"></div>-->
 
 
             <div class="box-container" id="pwd-container">
@@ -75,46 +90,26 @@ if (isset($_POST['submit'])) {
                 <!-- <p id="errorPassword">Your password must contain a letter at first character and be between 7 and 14 characters.</p> -->
 
             </div>
-            <!--<div class="inputError" id="pwd-inputError"></div>-->
             <div class="box-container" id="login-button-container">
 
                 <button type="submit" id="signInButton" name="submit">
                     Sign UP
                 </button>
             </div>
-            <!-- <div class="checkbox-row">
-            
-                <input type="checkbox" id="remember-me-label" name="remember-me" value="remember-me">
-                
-            <label for="remember-me" id="remember-me-label"> Remember me ? </label>
-            
-            <a href="https://www.netflix.com/br/LoginHelp">
-                <label id="help">Need help?</label>
+           
+        </form>
+    
+        <!-- <div class="sign-up">
+            <span class="new-netflix"> Already a member in Netflix?</span>
+            <a href="login.php">
+                <span class="sign-now">
+                    Log in
+                </span>
             </a>
         </div> -->
-        </form>
-        <!-- <div class="fb-login">
-                <img class="fb-icon" src="https://assets.nflxext.com/ffe/siteui/login/images/FB-f-Logo__blue_57.png">
-            </div>
-            <label class="fb-btn-text" id="fb-btn-text">Login with facebook</label>
-            <div class="sign-up">
-             <span class="new-netflix"> New to Netflix?</span>
-             <a href= "#">
-                <span class = "sign-now">
-                    Sign up now
-                </span>
-            </a>
-            </div> -->
 
-        <!-- 
-            <div class= "capcha">
-                <span id = "capcha">
-                    This page is protected by Google reCAPTCHA to ensure you're not a bot.
-                    <a class = "learn-more" href= "#">
-                    Learn more.</a>
-                </span>
-            </div> -->
     </div>
+    
     <footer class="footer text-dark">
         <p>Questions? contact us</p>
         <div class="footer-columns">
